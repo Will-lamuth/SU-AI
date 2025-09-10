@@ -30,7 +30,7 @@ export default function RootLayout({
         className="w-screen min-h-screen bg-[#F0EEEA] flex flex-col"
       >
         <Navbar/>
-        <main className="flex grow">
+        <main className="flex grow justify-center">
           {children}
         </main>
         
