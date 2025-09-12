@@ -11,4 +11,6 @@ export interface FullArticle{
     Content: any;
     currentSlug: string;
     titleImage: any;
+    Authors: string;
+    Date: Date;
 }

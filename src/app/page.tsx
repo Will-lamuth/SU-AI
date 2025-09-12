@@ -23,26 +23,36 @@ export default async function Home() {
   return (
     <div className="w-full flex flex-col justify-center items-center">
 
-      <div className="bg-amber-200 h-[500px] w-full"></div>
+      {/* hero section/landing section */}
+      <div className="h-[500px] w-full"></div>
 
-      <div className="w-[85%] flex flex-row gap-2.5">
-        <div className="bg-[#550000] w-[70%] h-full flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 mt-5 gap-3">
-            {data.map((post, idx) => (
-              <Card
-                key = {idx} 
-                title = {post.title}
-                description= {post.smallDescription}
-                image={post.titleImage}
-                href={post.currentSlug}
-              />
-            ))}
+      {/* Projects/events section */}
+      <div className="w-full bg-[#550000] flex justify-center">
+        <div className="bg-[#F0EEEA] w-[85%] flex flex-col md:flex-row gap-2.5">
+
+          <div className="bg-[#550000] w-[70%] h-full flex justify-baseline">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {data.map((post, idx) => (
+                <Card
+                  key = {idx} 
+                  title = {post.title}
+                  description= {post.smallDescription}
+                  image={post.titleImage}
+                  href={post.currentSlug}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="w-[30%] h-full bg-[#550000]">
 
+          <div className="w-[30%] h-full bg-[#550000]">
+
+        </div>
         </div>
       </div>
+
+      {/* team section */}
+      <div className="h-[500px] w-full"></div>
+      
     </div>
   );
 }

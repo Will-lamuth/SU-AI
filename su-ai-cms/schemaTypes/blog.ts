@@ -6,12 +6,12 @@ export default {
         {
             name: 'title',
             type: 'string',
-            title: 'Title of blog',
+            title: 'Title of blog post',
         },
         {
             name:'slug',
             type:'slug',
-            title:'Slug of your blog',
+            title:'Slug of your blog post',
             options: {
                 source: "title",
             },
@@ -19,12 +19,12 @@ export default {
         {
             name: 'titleImage',
             type: 'image',
-            title: 'Image of blog',
+            title: 'Image of blog post',
         },
         {
             name: 'smallDescription',
             type: 'text',
-            title: 'Small description of blog',
+            title: 'Small description of blog post',
         },
         {
             name: 'Content',
@@ -36,5 +36,15 @@ export default {
                 },
             ],
         },
+        {
+            name: 'Authors',
+            type: 'string',
+            title: 'Author of blog post'
+        },
+        {
+            name: 'Date',
+            type: 'datetime',
+            title: 'Date of blog post'
+        }
     ],
 }

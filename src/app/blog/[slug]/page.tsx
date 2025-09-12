@@ -10,6 +10,8 @@ async function getData(slug: string){
         title,
         Content,
         titleImage,
+        Authors,
+        Date,
     }[0]`;
 
     const data = await client.fetch(query);
@@ -25,17 +27,31 @@ export default async function BlogArticle({
     const data: FullArticle = await getData(slug);
     console.log(data);
 
-    return (
-        <div>
-            <h1>{data.title}</h1>
-            
-            <Image src={urlFor(data.titleImage).url()} width={400} height={400} alt="Title image"/>
+    const articleDate = data.Date ? new Date(data.Date) : null;
 
-            {data.Content && (
-                <div className="prose max-w-none">
-                    <PortableText value={data.Content} />
+
+    return (
+        <div className="w-full flex justify-center">
+            <div className="w-[85%] bg-white">
+                <h1 className="font-medium text-[2.5rem]">{data.title}</h1>
+                
+                <div className="relative w-full h-[600px] bg-gray-50">
+                    <Image src={urlFor(data.titleImage).url()} fill className="object-cover" alt="Title image"/>
                 </div>
-            )}
+
+                <h1>{data.Authors}</h1>
+                
+                <div className="w-full h-auto flex justify-center">
+                {data.Content && (
+                    <div className="w-[50%] prose max-w-none text-2xl">
+                        <PortableText value={data.Content} />
+                        <h1>{data.Authors}</h1>
+                        <p>{articleDate ? articleDate.toLocaleDateString("en-US") : "No date"}</p>
+                    </div>
+                )}
+                </div>
+            </div>
         </div>
+        
     );
 }
