@@ -12,22 +12,22 @@ type CardProps = {
 export default function Card({ title, description, image, href }: CardProps) {
   return (
     <Link href={`/blog/${href}`}>
-        <div className="shadow bg-white h-[400px] w-[400px] hover:scale-[101%] transition transform duration-300 ease-in-out">
+      <div className="shadow bg-white md:h-[400px] md:w-[400px] 2xl:h-[500px] 2xl:w-[500px] hover:scale-[102%] transition transform duration-300 ease-in-out">
         {image && ( // conditional rendering
             <Image
             src={urlFor(image).width(400).url()} // build URL
             alt={title}
             width={400}
             height={400}
-            className="h-[270px] object-cover"
+            className="h-[70%] w-auto object-cover"
             />
         )}
         <div className="px-2">
             <h2 className="text-xl font-bold mt-3">{title}</h2>
             {description && <p className="text-gray-600 mt-2">{description}</p>}
         </div>
-        
-        </div>
+      
+      </div>
     </Link>
     
   );

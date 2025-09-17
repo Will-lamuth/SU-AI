@@ -31,7 +31,7 @@ export default async function Home() {
         <div className="bg-[#F0EEEA] w-[85%] flex flex-col md:flex-row gap-2.5">
 
           <div className="bg-[#550000] w-[70%] h-full flex justify-baseline">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6 2xl:gap-12">
               {data.map((post, idx) => (
                 <Card
                   key = {idx} 
@@ -44,9 +44,8 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="w-[30%] h-full bg-[#550000]">
+          <div className="w-[30%] h-full bg-[#550000]"></div>
 
-        </div>
         </div>
       </div>
 

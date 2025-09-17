@@ -38,13 +38,33 @@ export default {
         },
         {
             name: 'Authors',
-            type: 'string',
-            title: 'Author of blog post'
-        },
+            type: 'array', // allows multiple authors
+            title: 'Authors',
+            validation: (rule: { required: () => any; }) => rule.required().max(1),
+            of: [
+              {
+                type: 'reference',
+                to: [{ type: 'member' }] // reference the member schema
+              }
+            ],
+          },
+          {
+            name: 'Topics',
+            type: 'array', 
+            title: 'Topic Name',
+            validation: (rule: { required: () => any; }) => rule.required(),
+            of: [
+              {
+                type: 'reference',
+                to: [{ type: 'topics' }]
+              }
+            ],
+          },
         {
             name: 'Date',
             type: 'datetime',
             title: 'Date of blog post'
-        }
+        },
+        
     ],
 }
