@@ -37,16 +37,11 @@ export default {
             ],
         },
         {
-            name: 'Authors',
-            type: 'array', // allows multiple authors
-            title: 'Authors',
-            validation: (rule: { required: () => any; }) => rule.required().max(1),
-            of: [
-              {
-                type: 'reference',
-                to: [{ type: 'member' }] // reference the member schema
-              }
-            ],
+            name: 'author',
+            type: 'reference',
+            title: 'Author',
+            to: [{ type: 'member' }],
+            validation: (rule: { required: () => any; }) => rule.required(),
           },
           {
             name: 'Topics',

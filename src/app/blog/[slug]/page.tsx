@@ -10,8 +10,13 @@ async function getData(slug: string){
         title,
         Content,
         titleImage,
-        Authors,
         Date,
+        author->{
+            name,
+            role,
+            avatar,
+            socials,
+        }
     }[0]`;
 
     const data = await client.fetch(query);
@@ -39,13 +44,13 @@ export default async function BlogArticle({
                     <Image src={urlFor(data.titleImage).url()} fill className="object-cover" alt="Title image"/>
                 </div>
 
-                <h1>{data.Authors}</h1>
+                <h1>{data.author.name}</h1>
                 
                 <div className="w-full h-auto flex justify-center">
                 {data.Content && (
                     <div className="w-[50%] prose max-w-none text-2xl">
-                        <PortableText value={data.Content} />
-                        <h1>{data.Authors}</h1>
+                        <PortableText value={data.Content}/>
+                        <h1>{data.author.name}</h1>
                         <p>{articleDate ? articleDate.toLocaleDateString("en-US") : "No date"}</p>
                     </div>
                 )}
