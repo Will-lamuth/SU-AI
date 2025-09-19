@@ -13,7 +13,7 @@ type CardProps = {
 export default function Card({ title, description, image, href, tags }: CardProps) {
   return (
     <Link href={`/blog/${href}`}>
-      <div className="shadow bg-white w-full md:h-[400px] 2xl:h-[500px] hover:scale-[101%] hover:border-white hover:border-3 transition transform duration-300 ease-in-out cursor-pointer">
+      <div className="z-10 shadow bg-white w-full md:h-[400px] 2xl:h-[500px] hover:scale-[100%] hover:border-white hover:border-3 transition transform duration-300 ease-in-out cursor-pointer">
         
         {/* Image container */}
         <div className="relative h-[70%] w-full">
@@ -42,9 +42,9 @@ export default function Card({ title, description, image, href, tags }: CardProp
         </div>
 
         {/* Text content */}
-        <div className="px-2 py-2">
-          <h2 className="text-xl font-bold">{title}</h2>
-          {description && <p className="text-gray-600 mt-1">{description}</p>}
+        <div className="p-3">
+          <h2 className="2xl:text-[1.5rem] md:text-[20px] font-[550]"><span className="underline">{title}</span> &gt; </h2>
+          {description && <p className="mt-1 2xl:text-[18px] font-[300]">{description}</p>}
         </div>
       </div>
     </Link>

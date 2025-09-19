@@ -20,7 +20,7 @@ export default function Card({ title, description, image, date}: CardProps) {
     console.log(day, month, year);
 
     return (
-        <div className="w-full md:h-[400px] 2xl:h-[500px] hover:scale-[101%] transition transform duration-300 ease-in-out cursor-pointer">
+        <div className="w-full md:h-[400px] 2xl:h-[500px] hover:scale-[101%] transition transform duration-300 ease-in-out">
         
         {/* Image container */}
         <div className="relative h-[70%] w-full">
@@ -47,9 +47,9 @@ export default function Card({ title, description, image, date}: CardProps) {
         </div>
 
         {/* Text content */}
-        <div className="px-2 py-2">
-            <h2 className="text-xl font-bold text-white">{title}</h2>
-            {description && <p className="text-white mt-1">{description}</p>}
+        <div className="p-3">
+            <h2 className="2xl:text-[1.5rem] md:text-[20px] font-[550] text-white">{title}</h2>
+            {description && <p className="text-white mt-1 2xl:text-[18px] font-[300]">{description}</p>}
         </div>
         </div>
     );

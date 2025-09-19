@@ -7,7 +7,7 @@ export interface simpleBlogCard{
     smallDescription: string;
     currentSlug: string;
     titleImage: any;
-    Topics: articleTopics;
+    Topics: articleTopics[];
 }
 
 export interface Member {
