@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { client } from "./lib/sanity";
-import { eventCard, simpleBlogCard } from "./lib/interface";
-import Card from "./components/Card";
-import EventCard from "./components/EventCard";
+import { Member, eventCard, simpleBlogCard } from "./lib/interface";
 import ProjectSection from "./components/ProjectSection";
+import MemberSection from "./components/MemberSection";
 
 async function getData(){
    const query = `
@@ -38,24 +37,49 @@ async function getEvent(){
   return data;
 }
 
+async function getMembers(){
+  const query = `
+  *[_type == "member" && role != "Member"] | order(role asc) {
+    name,
+    role,
+    avatar,
+    "socials": socials[]{
+      platform,
+      url
+    }
+  }`;
+  const data = await client.fetch(query);
+  return data;
+}
+
 export default async function Home() {
   const data: simpleBlogCard[] = await getData();
   const topics = await getTopics();
   const event: eventCard[] = await getEvent();
+  const members: Member[] = await getMembers();
 
-  console.log(data);
-  console.log(topics);
-  console.log("event times", event);
+  console.log("Members:", members);
   return (
     <div className="w-full flex flex-col justify-center items-center">
 
       {/* hero section/landing section */}
-      <div className="h-[500px] w-full"></div>
+      <div className="h-[100vh] w-full flex justify-center items-end">
+
+          <div className="w-[85%] h-[70%] bg-white">
+          <Image
+              src="/lightbulb_book_halftone_light.webp"
+              alt="landing"
+              width={1000}
+              height={1000}
+              className="h-full w-full object-cover"
+            />
+          </div>
+      </div>
 
       <ProjectSection data={data} topics={topics} event={event}/>
 
       {/* team section */}
-      <div className="h-[500px] w-full"></div>
+      <MemberSection members={members}/>
       
     </div>
   );

@@ -42,7 +42,30 @@ export default {
             { title: 'Treasurer', value: 'Treasurer' },
             { title: 'Member', value: 'Member' },
           ],
-      }
+      },
+      validation: (Rule: any) => Rule.custom(async (role: string, context: any) => {
+        if (!role) return true; // allow empty
+    
+        // only check officer roles
+        const restrictedRoles = ['President', 'Vice President', 'Secretary', 'SGA Representative', 'Treasurer'];
+        if (!restrictedRoles.includes(role)) return true;
+    
+        const { getClient } = context;
+        const client = getClient({ apiVersion: '2023-01-01' });
+    
+        const currentId = context.document._id.replace(/^drafts\./, "");
+
+        const existing = await client.fetch(
+          `*[_type == "member" && role == $role && !(_id in [$currentId, "drafts." + $currentId])][0]`,
+          { role, currentId }
+        );
+    
+        if (existing) {
+          return `There is already a ${role} assigned.`;
+        }
+    
+        return true;
+      })
     },
     {
         name: 'avatar',

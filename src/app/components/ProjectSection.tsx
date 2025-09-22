@@ -62,7 +62,7 @@ export default function ProjectSection({ data, topics, event }: ProjectsSectionP
                 <div className="w-full bg-[#550000] flex justify-center">
                     <div className="bg-[#F0EEEA] w-[85%] h-[100vh] flex gap-2.5 overflow-y-hidden">
                         <div className="bg-[#550000] w-[70%] flex flex-col h-[100vh] md:pr-8 2xl:pr-16"> 
-                            <div className="flex-1 overflow-scroll overflow-x-hidden w-full pt-2">
+                            <div className="flex-1 overflow-scroll overflow-x-hidden w-full py-2">
                                 <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6 2xl:gap-12 ">
                                     {filteredData.map((post, idx) => (
                                     <Card
