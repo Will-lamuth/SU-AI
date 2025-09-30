@@ -1,10 +1,17 @@
-import { Member } from "../lib/interface";
+import { Member, SocialPlatform } from "../lib/interface";
 import Image from "next/image";
 import { urlFor } from "../lib/sanity";
 
 interface MemberSectionProps {
     members: Member[];
 }
+
+const socialIcon: Record<SocialPlatform, string> = {
+    linkedin: "/instagram.png",
+    github: "/github.png",
+    email: "/email.png",
+    discord: "/discord.png"
+};
 
 export default function MemberSection({members}: MemberSectionProps){
     return (
@@ -14,9 +21,9 @@ export default function MemberSection({members}: MemberSectionProps){
                     <h1 className="font-[550] text-[40px]">Meet the <span className="underline text-[#550000]">Club Officers</span></h1>
                     <p className="font-[400] text-[20px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
-                <div className="w-full h-[80vh] grid grid-cols-3">
+                <div className="w-full h-[80vh] grid md:grid-cols-3">
                 {members.map((member, idx) =>(
-                    <div key={idx} className="flex flex-col gap-3">
+                    <div key={idx} className="w-full flex flex-col gap-3">
                         <div className="member-pic h-[150px] w-[150px] rounded-full bg-[#FFAEAE]">
                             {/* Image */}
                             {member.avatar && (
@@ -34,10 +41,15 @@ export default function MemberSection({members}: MemberSectionProps){
                             <h2 className="font-[500] text-[20px] text-[#4E4E4E]">{member.role}</h2>
                         </div>
                         <div className="flex gap-4 items-center">
-                            <a><img src="/email.png" className="h-5 w-auto "></img></a>
-                            <a><img src="/instagram.png" className="h-5 w-auto"></img></a>
-                            <a><img src="/discord.png" className="h-6 w-auto"></img></a>
-                            <a><img src="/github.png" className="h-6 w-auto"></img></a>
+                            {member.socials?.map((s, idx) => (
+                                <a
+                                key={idx}
+                                href={s.platform === "email" ? `mailto:${s.url}` : s.url}
+                                target={s.platform === "email" ? undefined : "_blank"}
+                                rel={s.platform === "email" ? undefined : "noopener noreferrer"}>
+                                <img src={socialIcon[s.platform]} className="h-5 w-auto hover:-translate-y-1 duration-100 ease-in-out"></img>
+                                </a>
+                            ))}
                         </div>
                     </div>
                 ))}

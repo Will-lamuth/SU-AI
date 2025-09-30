@@ -10,11 +10,13 @@ export interface simpleBlogCard{
     Topics: articleTopics[];
 }
 
+export type SocialPlatform = "linkedin" | "github" | "email" | "discord";
+
 export interface Member {
     name: string;
     role: string;
     avatar?: any;
-    socials?: { platform: string; url: string }[];
+    socials?: { platform: SocialPlatform; url: string }[];
   }
 
 export interface FullArticle{
